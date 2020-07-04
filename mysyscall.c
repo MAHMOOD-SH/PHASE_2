@@ -6,10 +6,7 @@
 typedef int (*FunctionCallback)(char *);
 
 int 
-main(int argc, char *argv[])
+main()
 {
-  int pid;
-  int a,b;
-  FunctionCallback functions[] = {&mkdir, &mkdir};
   exit();
 }
