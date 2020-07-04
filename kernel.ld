@@ -26,8 +26,8 @@ SECTIONS
 		PROVIDE(__STAB_BEGIN__ = .);
 		*(.stab);
 		PROVIDE(__STAB_END__ = .);
-		/* REMOVING BYTE(0) TO SOLVE ISSUE 115 WITH QEMU. SEE: https://github.com/mit-pdos/xv6-public/pull/115
-		/* BYTE(0)		/* Force the linker to allocate space
+		// REMOVING BYTE(0) TO SOLVE ISSUE 115 WITH QEMU. SEE: https://github.com/mit-pdos/xv6-public/pull/115
+		// BYTE(0)		/* Force the linker to allocate space for this section */
 	}
 
 	.stabstr : {
@@ -35,7 +35,7 @@ SECTIONS
 		*(.stabstr);
 		PROVIDE(__STABSTR_END__ = .);
 		/* REMOVING BYTE(0) TO SOLVE ISSUE 115 WITH QEMU. SEE: https://github.com/mit-pdos/xv6-public/pull/115
-		/* BYTE(0)		/* Force the linker to allocate space
+		/* BYTE(0)		/* Force the linker to allocate space for this section */
 	}
 
 	/* Adjust the address for the data segment to the next page */
