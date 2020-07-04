@@ -199,6 +199,11 @@ fork(void)
   np->sz = curproc->sz;
   np->parent = curproc;
   *np->tf = *curproc->tf;
+  
+  //// ctime & rtime values /////
+  np->ctime = (int)ticks;   /////
+  np->rtime = 0;            /////
+  ///////////////////////////////
 
   // Clear %eax so that fork returns 0 in the child.
   np->tf->eax = 0;
