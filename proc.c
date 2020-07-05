@@ -543,3 +543,9 @@ procdump(void)
     cprintf("\n");
   }
 }
+
+int
+waitx (int *wtime, int *rtime)
+{
+  return 22;
+}
