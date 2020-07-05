@@ -236,6 +236,12 @@ exit(void)
   struct proc *p;
   int fd;
 
+//////// CALCULATING EXECUTION TIME ON EXIT //////
+  acquire(&tickslock);                      //////
+  curproc->etime = ticks;                   //////
+  release(&tickslock);                      //////
+//////////////////////////////////////////////////
+
   if(curproc == initproc)
     panic("init exiting");
 
