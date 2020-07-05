@@ -50,7 +50,7 @@ struct proc {
   struct inode *cwd;           // Current directory
   char name[16];               // Process name (debugging)
   // ADDING PHASE_2 NEW VARIABLES 
-  int etime, ctime, rtime, iotime;  // end time, creation time,  run time, io time
+  int stime, etime, iotime, rtime;  // start time, end time, I/O time, run time
 
 };
 
