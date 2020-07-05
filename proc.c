@@ -200,8 +200,8 @@ fork(void)
   np->parent = curproc;
   *np->tf = *curproc->tf;
   
-  //// ctime & rtime values /////
-  np->ctime = (int)ticks;   /////
+  //// stime & rtime values /////
+  np->stime = (int)ticks;   /////
   np->rtime = 0;            /////
   ///////////////////////////////
 
