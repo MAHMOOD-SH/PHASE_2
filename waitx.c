@@ -1,12 +1,9 @@
 #include "types.h"
 #include "stat.h"
 #include "user.h"
+#include "fs.h"
 
-int 
-main()
+int main (int argc,char *argv[])
 {
-  int waiting_time;
-  int running_time;
-  waitx(&waiting_time, &running_time);
   exit();
 }
