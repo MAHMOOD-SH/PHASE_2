@@ -91,8 +91,19 @@ sys_uptime(void)
 }
 
   
-int
-sys_waitx(int *wtime, int *rtime)
+int 
+sys_waitx(void)
 {
-  return waitx(wtime, rtime);
+  int *wtime;
+  int *rtime; 
+  if(argptr(0, (char**)&wtime, sizeof(int)) < 0)    // if argument 1 is exist, put it to wtime
+  {
+	  return -1;
+  }	     
+  if(argptr(1, (char**)&rtime, sizeof(int)) < 0)    // if argument 2 is exist, put it to rtime
+  {
+	  return -1;
+  }
+  return waitx(wtime, rtime);                       // call waitx with arguments
 }
+
