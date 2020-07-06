@@ -120,7 +120,7 @@ void            userinit(void);
 int             wait(void);
 void            wakeup(void*);
 void            yield(void);
-int             waitx(int *, int *); //##// Add waitx Systemcall
+int             waitx(int *, int *);        //##// Add waitx Systemcall
 
 // swtch.S
 void            swtch(struct context**, struct context*);
