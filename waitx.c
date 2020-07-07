@@ -20,6 +20,7 @@ int main (int argc,char *argv[])
   {
     waitx_pid = waitx(&waiting_time,&running_time);
     printf(1, "Waiting Time = %d\nRuning Time = %d\nProcess id: %d \n",waiting_time,running_time,waitx_pid);
+    printf(1, "Response time = %d \n",waiting_time+running_time);
   }
 
   exit();
