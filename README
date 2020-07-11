@@ -1,11 +1,1 @@
-CHANGES:
-1- REMOVING BYTE(0) TO SOLVE ISSUE 115 WITH QEMU. (SEE: https://github.com/mit-pdos/xv6-public/pull/115)
-2- ADDING SYSTEM CALL NUMBER TO syscall.h (#define SYS_waitx  22)
-3- ADDING SYSTEM CALL FUNCTION TO defs.h. (int waitx(int *wtime, int *rtime);)
-4- ADDING SYSTEM CALL FUNCTION TO user.h SYSCALL HEADER. (int waitx(int *wtime, int *rtime);)
-5- ADDING SYSTEM CALL FUNCTION TO sysproc.c. (int sys_waitx(int *wtime, int *rtime){return waitx(wtime, rtime);})
-6- ADDING SYSTEM CALL COMMAND TO usys.S. (SYSCALL(waitx))
-7- ADDING (extern int sys_waitx(void);) AND ([SYS_waitx] sys_waitx,) TO syscall.c.
-8- ADDING waitx FUNCTION TO proc.c.
-9- CREATING A NEW FILE NAMED waitx.c AND ADDING A FUNCTION TO CALL waitx SYSTEM CALL.
-10- ADDING waitx TO MAKEFILE COMPILE LIST.
+
