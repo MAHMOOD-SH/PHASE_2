@@ -121,6 +121,7 @@ int             wait(void);
 void            wakeup(void*);
 void            yield(void);
 int             waitx(int *, int *);        //##// Add waitx Systemcall
+int             set_priority (int pid, int priority); // set priority system call
 
 // swtch.S
 void            swtch(struct context**, struct context*);
