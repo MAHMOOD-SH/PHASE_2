@@ -596,3 +596,29 @@ waitx(int *wtime, int *rtime)
     sleep(curproc, &ptable.lock);  //DOC: wait-sleep
   }
 }
+
+// set priority
+
+int
+set_priority ( int pid, int priority )
+{
+  struct proc *p;
+  int old_priority;
+
+  acquire(&ptable.lock);
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->pid == pid){
+      old_priority = p->priority;
+      p->priority = priority;
+      break;
+    }
+    else{
+      old_priority = -1;
+    }
+  }
+  release(&ptable.lock);
+
+  yield();
+
+  return old_priority;
+}
