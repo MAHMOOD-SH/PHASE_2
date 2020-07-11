@@ -51,6 +51,8 @@ struct proc {
   char name[16];               // Process name (debugging)
   // ADDING PHASE_2 NEW VARIABLES 
   int stime, etime, iotime, rtime;  // start time, end time, I/O time, run time
+  // PRIORITY BASED SCHEDULER VARIABLES
+  int priority;                 // process priority [0-100]
 
 };
 
