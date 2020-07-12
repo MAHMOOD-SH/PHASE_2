@@ -126,3 +126,11 @@ sys_set_priority ( void )
 
   return set_priority(pid, priority);
 }
+
+// current process state
+
+int
+sys_cps ( void )
+{
+  return cps();
+}
