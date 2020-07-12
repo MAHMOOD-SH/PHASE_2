@@ -26,5 +26,7 @@ int main (int argc,char *argv[])
   printf(1, "pid= %d , new_priority= %d", pid, priority);
   printf(1, " , old_priority= %d\n", old_priority);
 
+  cps();
+
   exit();
 }
