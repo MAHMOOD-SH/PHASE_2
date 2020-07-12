@@ -338,7 +338,7 @@ wait(void)
 void
 scheduler(void)
 {
-  struct proc *p;
+  struct proc *p , *p1;
   struct cpu *c = mycpu();
   c->proc = 0;
   
@@ -346,12 +346,27 @@ scheduler(void)
     // Enable interrupts on this processor.
     sti();
 
+    struct proc *hp;
+
     // Loop over process table looking for process to run.
     acquire(&ptable.lock);
     for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
       if(p->state != RUNNABLE)
         continue;
 
+      hp = p; // highest priority RUNNABLE process for now
+
+      // searching for RUNNABLE process with priority higher than hp
+      for(p1 = ptable.proc; p1 < &ptable.proc[NPROC]; p1++){
+        if(p1->state != RUNNABLE)
+          continue;
+
+        if ( p1->priority < hp->priority )
+          hp = p1;
+      }
+
+      p = hp;
+      
       // Switch to chosen process.  It is the process's job
       // to release ptable.lock and then reacquire it
       // before jumping back to us.
@@ -605,9 +620,8 @@ set_priority ( int pid, int priority )
   struct proc *p;
   int old_priority;
 
-  acquire(&ptable.lock);
   for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
-    if(p->pid == pid){
+    if(p->pid == pid){     
       old_priority = p->priority;
       p->priority = priority;
       break;
@@ -616,9 +630,35 @@ set_priority ( int pid, int priority )
       old_priority = -1;
     }
   }
-  release(&ptable.lock);
 
   yield();
-
+  
   return old_priority;
+}
+
+
+int
+cps(void)
+{
+  struct proc *p;
+  
+  sti();
+
+  // Loop over process table looking for process to run.
+  acquire(&ptable.lock);
+  cprintf("name \t pid \t state \t\t priority \t \n");
+  for(p = ptable.proc; p < &ptable.proc[NPROC]; p++){
+    if(p->state == SLEEPING){
+      cprintf("%s \t %d \t SLEEPING \t %d \t \n", p->name, p->pid, p->priority);
+    }
+    else if(p->state == RUNNING){
+      cprintf("%s \t %d \t RUNNING \t %d \t \n", p->name, p->pid, p->priority);
+    }
+    else if(p->state == RUNNABLE){
+      cprintf("%s \t %d \t RUNNABLE \t %d \t \n", p->name, p->pid, p->priority);
+    }      
+  }
+  release(&ptable.lock);
+
+  return 24;
 }
